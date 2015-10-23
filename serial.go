@@ -32,8 +32,8 @@ type SerialPort struct {
 ********************************   BASIC FUNCTIONS  ****************************************
 *******************************************************************************************/
 
-func New() SerialPort {
-	return SerialPort{
+func New() *SerialPort {
+	return &SerialPort{
 		eol: EOL_DEFAULT,
 	}
 }
@@ -287,7 +287,10 @@ func (sp *SerialPort) processSerialPort() {
 }
 
 func (sp *SerialPort) log(dir, data string, extras ...interface{}) {
-	spacer := "-"
+	return
+
+	// TODO: A better log
+	/* spacer := "-"
 	if dir == "Tx" {
 		spacer = ">>"
 	} else {
@@ -298,7 +301,7 @@ func (sp *SerialPort) log(dir, data string, extras ...interface{}) {
 	if len(extras) > 0 {
 		data = fmt.Sprintf(data, extras...)
 	}
-	fmt.Printf("[%s] %s %s %s\r\n", sp.name, dir, spacer, data)
+	fmt.Printf("[%s] %s %s %s\r\n", sp.name, dir, spacer, data) */
 }
 
 func removeEOL(line string) string {
